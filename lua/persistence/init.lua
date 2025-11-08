@@ -71,6 +71,7 @@ function M.save()
 end
 
 ---@param opts? { last?: boolean }
+---@return boolean
 function M.load(opts)
   opts = opts or {}
   ---@type string
@@ -87,7 +88,9 @@ function M.load(opts)
     M.fire("LoadPre")
     vim.cmd("silent! source " .. e(file))
     M.fire("LoadPost")
+    return true
   end
+  return false
 end
 
 ---@return string[]
